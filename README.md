@@ -1,7 +1,7 @@
 Bracket Browse
 ==============
 
-![screenshot](https://raw.githubusercontent.com/Kirkman/bracket-browse/master/elexforecast-animation.gif)
+![screenshot](https://raw.githubusercontent.com/Kirkman/bracket-browse/master/bracket-title.png)
 
 ### What is this?
 

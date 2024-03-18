@@ -17,7 +17,7 @@ See it in action by visiting my BBS: telnet://guardian.synchro.net. You'll want 
 
 Connect to my BBS, then follow the menus to create an account. 
 
-Once you're at the main menu, the following sequence will launch Election Forecast:
+Once you're at the main menu, the following sequence will launch Bracket Browse:
 
 * Press [X] for "External Programs" 
 * Press [2] for the "Information" category

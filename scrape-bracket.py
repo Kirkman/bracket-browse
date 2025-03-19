@@ -55,14 +55,17 @@ for gender in genders:
 	# Construct the URL to the bracket JSON file
 	# url = 'http://data.ncaa.com/carmen/brackets/championships/basketball-' + gender + '/d1/' + year + '/data.json'
 
-	# NEW SCHEME IN 2022
+	# NEW SCHEME IN 2022-23. Updated for 2024-25.
 	# Looks like there are three "operationName" values. 
 	# Each one gets a different sha256Hash value in the persistedQuery.
 
 	operations = [
-		{ 'name':'scores_current_web', 'hash':'3e1de1bf338658aeac88c93e5cfdc3ddaaaac2d1a91c14e9c300174a46a9d91b'},
-		{ 'name':'scores_bracket_web', 'hash':'f21cac8420a55a7d190f2f686a441e2507d8fb80f25eac5c91131ddd9df588da'},
-		{ 'name':'official_bracket_web', 'hash':'5214677a0d6c0df6619a440e97006fe55abcd89c46692ac349a7b781adf5f1ad'},
+		# { 'year': '2022', 'name':'scores_current_web', 'hash':'3e1de1bf338658aeac88c93e5cfdc3ddaaaac2d1a91c14e9c300174a46a9d91b'},
+		# { 'year': '2022', 'name':'scores_bracket_web', 'hash':'f21cac8420a55a7d190f2f686a441e2507d8fb80f25eac5c91131ddd9df588da'},
+		# { 'year': '2022', 'name':'official_bracket_web', 'hash':'5214677a0d6c0df6619a440e97006fe55abcd89c46692ac349a7b781adf5f1ad'},
+		{ 'year': '2024', 'name':'scores_current_web', 'hash':'2d9054b672f94e541c1de408ab4af3c6d014ba37915a58eca97b8198bcc198da'},
+		{ 'year': '2024', 'name':'scores_bracket_web', 'hash':'9b3e0ae3018a2c3cc81877867705189763367a6fca416a36e5196bb4851470a4'},
+		{ 'year': '2024', 'name':'official_bracket_web', 'hash':'58cd1e8be6f2902dd6d7fed23392b885c7349ea6ff04b740f95cfe8f8c226595'},
 	]
 
 	url = 'https://sdataprod.ncaa.com/?operationName='+operations[1]["name"]+'&variables={"seasonYear":'+year+'}&extensions={"persistedQuery":{"version":1,"sha256Hash":"'+operations[1]["hash"]+'"}'+'}';
@@ -78,7 +81,7 @@ for gender in genders:
 		br.set_handle_robots(False)
 		random_user_agent = choice(user_agents)
 		br.addheaders = [('User-agent', random_user_agent)]
-		r = br.open( url )
+		r = br.open(url)
 		data = r.read()
 
 		# If we actually got data, save it.

@@ -95,6 +95,10 @@ function checkLongNames(name) {
 			short: "St Louis U",
 		},
 		{
+			long:  "St. John's",
+			short: "St John's",
+		},
+		{
 			long:  "Saint Mary's",
 			short: "St Mary's",
 		},
@@ -243,6 +247,11 @@ function checkLongNames(name) {
 			long:  "South Carolina",
 			short: "S Carolina",
 		},
+		{
+			long:  "UC San Diego",
+			short: "UCSD",
+		},
+
 		{
 			long:  "UC Santa Barbara",
 			short: "UC SB",
@@ -1039,7 +1048,13 @@ function displayBracket(games) {
 
 
 
-
+function range(start_year, end_year) {
+	var years = [];
+	for (var i=end_year; i>start_year-1; i--) {
+		years.push(i.toString());
+	}
+	return years;
+};
 
 
 
@@ -1048,7 +1063,6 @@ var cleanUp = function() {
 	frame.close();
 	bracketFrame.delete();
 	frame.delete();
-	// console.clear();
 }
 
 
@@ -1058,9 +1072,13 @@ var cleanUp = function() {
 console.clear();
 frame.open();
 
+// Changed years array to be created dynamically.
+// range() creates an array of year strings, in reverse chronological order.
+// e.g. ['2024', '2023', '2022', '2021' ...]
+var current_season = new Date().getFullYear() - 1;
+var years = range(2017, current_season);
 
 var genders = ['men','women'];
-var years = ['2023','2022','2021','2020','2019','2018','2017'];
 
 var options = {
 	'year': years[0],

@@ -28,22 +28,28 @@ var nextWeek = new Date.today().clone().add({ days: 7 });
 // COLORS
 // http://wiki.synchro.net/custom:ctrl-a_codes
 
+// NOTE ON COLORS. An old bug allowed setData() to parse CTRL-A codes. 
+// I didn't know it at the time, but that was unintentional behavior
+// and it was disabled in 2024. So it's important to provide only
+// CTRL-A codes to putmsg(), and only Attribute constants to setData().
+
+// COLORS -- ATTRIBUTE CONSTANTS
+
 // low Red background
-var lowRedHighWhite = 'HW1';
-var lowBlueHighWhite = 'HW4';
+var lowRedHighWhite = BG_RED|WHITE|HIGH;
+var lowBlueHighWhite = BG_BLUE|WHITE|HIGH;
 
 // low cyan background
-var lowCyanLowBlack = 'NK6';
+var lowCyanLowBlack = BG_CYAN|BLACK;
 
 // low White background
-var lowWhiteHighRed = 'HR7';
-var lowWhiteHighBlue = 'HB7';
-var lowWhiteHighBlack = 'HK7';
+var lowWhiteHighRed = BG_LIGHTGRAY|RED|HIGH;
+var lowWhiteHighBlue = BG_LIGHTGRAY|BLUE|HIGH;
+var lowWhiteHighBlack = BG_LIGHTGRAY|BLACK|HIGH;
 
-var lowWhiteLowRed = 'NR7';
-var lowWhiteLowBlue = 'NB7';
-var lowWhiteLowBlack = 'NK7';
-
+var lowWhiteLowRed = BG_LIGHTGRAY|RED;
+var lowWhiteLowBlue = BG_LIGHTGRAY|BLUE;
+var lowWhiteLowBlack = BG_LIGHTGRAY|BLACK;
 
 
 // CHARACTERS
@@ -644,6 +650,12 @@ function putMsgOversize(theFrame, x, y, attr, str) {
 			theFrame.setData( x+s, y, str.charAt(s), attr);
 		}
 	}
+
+	// debug('===============================================');
+	// debug('w: ' + w.toString() + ' | h: ' + h.toString());
+	// debug('str: ' + str);
+	// debug('-----------------------------------------------');
+	// debugFrame(theFrame);
 }
 
 
@@ -700,7 +712,7 @@ function displayBracket(games) {
 	// Iterate over all the games
 	for (var i = 0; i < newGames.length; i++ ) {
 		var g = new gameObject();
-		g.gameID = parseInt( newGames[i].bracketId );
+		g.gameID = parseInt(newGames[i].bracketId);
 		if (newGames[i].teams.length > 0) {
 			for (var t=0; t<newGames[i].teams.length; t++) {
 				var team = newGames[i].teams[t];
